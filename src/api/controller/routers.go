@@ -41,16 +41,16 @@ var routes = Routes{
 		"/",
 		Index,
 	},
-	// Route{
-	// 	"CreatePod",
-	// 	strings.ToUpper("Post"),
-	// 	"/v1/pod/create",
-	// 	CreatePod,
-	// },
 	Route{
 		"GetPodInfo",
 		strings.ToUpper("Get"),
 		"/v1/pod/info",
 		GetPodInfo,
+	},
+	Route{
+		"CreateDeployment",
+		strings.ToUpper("Post"),
+		"/v1/pod/create",
+		CreateDeployment,
 	},
 }

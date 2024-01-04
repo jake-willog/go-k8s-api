@@ -25,10 +25,10 @@ func LoadKubeConfig() (*kubernetes.Clientset, error) {
 	if err != nil {
 		panic(err)
 	}
-	client, err := kubernetes.NewForConfig(config)
+	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
 		panic(err)
 	}
 
-	return client, err
+	return clientset, err
 }
