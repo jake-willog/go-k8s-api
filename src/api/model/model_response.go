@@ -10,4 +10,6 @@ type Response struct {
 	Pods *[]Pod `json:"pods,omitempty"`
 
 	ArgoClusters *[]ArgoCluster `json:"argoClusters,omitempty"`
+
+	ArgoProjects *[]ArgoProject `json:"argoProject,omitempty"`
 }

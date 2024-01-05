@@ -10,3 +10,10 @@ type ArgoCluster struct {
 	ConnectionStatus string
 	ServerVersion    string
 }
+
+type ArgoProject struct {
+	Name       string
+	NameSpace  string
+	RepoURL    string
+	SyncStatus string
+}

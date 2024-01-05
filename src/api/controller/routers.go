@@ -60,9 +60,21 @@ var routes = Routes{
 	// 	GetArgoProject,
 	// },
 	Route{
+		"CreateArgoProject",
+		strings.ToUpper("Post"),
+		"/v1/argo/project/create",
+		CreateArgoProject,
+	},
+	Route{
 		"GetArgoCluster",
 		strings.ToUpper("Get"),
 		"/v1/argo/cluster/info",
 		GetArgoCluster,
+	},
+	Route{
+		"GetArgoApplication",
+		strings.ToUpper("Get"),
+		"/v1/argo/application/info",
+		GetArgoApplication,
 	},
 }
