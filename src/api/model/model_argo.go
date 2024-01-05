@@ -13,7 +13,7 @@ type ArgoCluster struct {
 
 type ArgoProject struct {
 	Name       string
-	NameSpace  string
+	Namespace  string
 	RepoURL    string
 	SyncStatus string
 }

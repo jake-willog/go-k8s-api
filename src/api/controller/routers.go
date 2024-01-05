@@ -77,4 +77,10 @@ var routes = Routes{
 		"/v1/argo/application/info",
 		GetArgoApplication,
 	},
+	Route{
+		"CreateArgoApplication",
+		strings.ToUpper("Post"),
+		"/v1/argo/application/create",
+		CreateArgoApplication,
+	},
 }

@@ -79,60 +79,26 @@ func (c *Client) GetAppliction() ([]v1alpha1.Application, error) {
 	return cl.Items, nil
 }
 
-func (c *Client) CreateApplication(name string) (*v1alpha1.Application, error) {
+func (c *Client) CreateApplication(name string, project string, repoURL string, path string, cluster string, namespace string, syncOptions v1alpha1.SyncOptions) (*v1alpha1.Application, error) {
 	return c.applicationClient.Create(context.Background(), &application.ApplicationCreateRequest{
 		Application: &v1alpha1.Application{
 			ObjectMeta: v1.ObjectMeta{
 				Name: name,
 			},
+			Spec: v1alpha1.ApplicationSpec{
+				Project: project,
+				Source: &v1alpha1.ApplicationSource{
+					RepoURL: repoURL,
+					Path:    path,
+				},
+				Destination: v1alpha1.ApplicationDestination{
+					Server:    cluster,
+					Namespace: namespace,
+				},
+				SyncPolicy: &v1alpha1.SyncPolicy{
+					SyncOptions: syncOptions,
+				},
+			},
 		},
 	})
 }
-
-// func (c *Client) GetProject(name string) (*v1alpha1.AppProject, error) {
-// 	return c.projectClient.Get(context.Background(), &project.ProjectQuery{
-// 		Name: name,
-// 	})
-// }
-
-// func (c *Client) AddDestination(projectName, server, namespace, name string) error {
-// 	p, err := c.GetProject(projectName)
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	p.Spec.Destinations = []v1alpha1.ApplicationDestination{
-// 		{
-// 			Server:    server,
-// 			Namespace: namespace,
-// 			Name:      name,
-// 		},
-// 	}
-
-// 	_, err = c.projectClient.Update(context.Background(), &project.ProjectUpdateRequest{
-// 		Project: p,
-// 	})
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	return nil
-// }
-
-// func (c *Client) CreateProject(name string) (*v1alpha1.AppProject, error) {
-// 	return c.projectClient.Create(context.Background(), &project.ProjectCreateRequest{
-// 		Project: &v1alpha1.AppProject{
-// 			ObjectMeta: v1.ObjectMeta{
-// 				Name: name,
-// 			},
-// 		},
-// 	})
-// }
-
-// func (c *Client) DeleteProject(name string) error {
-// 	_, err := c.projectClient.Delete(context.Background(), &project.ProjectQuery{
-// 		Name: name,
-// 	})
-
-// 	return err
-// }
