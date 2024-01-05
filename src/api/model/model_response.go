@@ -8,4 +8,6 @@ type Response struct {
 	StatusCode int `json:"statusCode,omitempty"`
 
 	Pods *[]Pod `json:"pods,omitempty"`
+
+	ArgoClusters *[]ArgoCluster `json:"argoClusters,omitempty"`
 }

@@ -53,4 +53,16 @@ var routes = Routes{
 		"/v1/pod/create",
 		CreateDeployment,
 	},
+	// Route{
+	// 	"GetArgoProject",
+	// 	strings.ToUpper("Get"),
+	// 	"/v1/argo/project/info",
+	// 	GetArgoProject,
+	// },
+	Route{
+		"GetArgoCluster",
+		strings.ToUpper("Get"),
+		"/v1/argo/cluster/info",
+		GetArgoCluster,
+	},
 }
