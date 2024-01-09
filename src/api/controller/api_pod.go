@@ -18,7 +18,7 @@ import (
 
 func CreateDeployment(w http.ResponseWriter, r *http.Request) {
 	reqId := getRequestId(w, r)
-	logger.Debugf(reqId, "user/v1/pod/create POST started")
+	logger.Debugf(reqId, "v1/pod/create POST started")
 
 	clientset, err := config.LoadKubeConfig()
 	if err != nil {
@@ -76,7 +76,7 @@ func CreateDeployment(w http.ResponseWriter, r *http.Request) {
 
 func GetPodInfo(w http.ResponseWriter, r *http.Request) {
 	reqId := getRequestId(w, r)
-	logger.Debugf(reqId, "user/v1/pod/info GET started")
+	logger.Debugf(reqId, "v1/pod/info GET started")
 
 	clientset, err := config.LoadKubeConfig()
 	if err != nil {

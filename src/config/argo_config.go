@@ -7,7 +7,7 @@ import (
 
 func LoadArgoConfig() (*argocd.Client, error) {
 	argoconfig := model.Connection{
-		Address: "localhost:8082",
+		Address: "argocd-server.argocd.svc.cluster.local:443",
 		Token:   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJmb286YXBpS2V5IiwibmJmIjoxNzA0MzYxOTk3LCJpYXQiOjE3MDQzNjE5OTcsImp0aSI6Ijg3ZWMzOTdkLTY4MzgtNDllNS05NjNkLTI4ZGJmMDA3ZThiZCJ9.Mv4fN7cGnebFeTd9orHU30gO33znspwBjkNdL0_cfn0",
 	}
 
