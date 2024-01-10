@@ -102,3 +102,9 @@ func (c *Client) CreateApplication(name string, project string, repoURL string, 
 		},
 	})
 }
+
+func (c *Client) SyncApplication(name string) (*v1alpha1.Application, error) {
+	return c.applicationClient.Sync(context.Background(), &application.ApplicationSyncRequest{
+		Name: &name,
+	})
+}

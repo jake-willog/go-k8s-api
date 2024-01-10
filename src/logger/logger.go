@@ -2,6 +2,7 @@ package logger
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"runtime"
 	"strings"
@@ -22,13 +23,15 @@ func init() {
 
 	logFile := "/var/log/k8s-api.log"
 
-	// TEST: 로그 파일로 쓰기
 	file, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		Logger.Fatal("Failed to open log file: ", err)
 	}
-	Logger.SetOutput(file)
 
+	Logger.SetOutput(io.MultiWriter(file, os.Stdout))
+
+	// TODO: file or Stdout 선택
+	// Logger.SetOutput(file)
 	// Logger.SetOutput(os.Stdout)
 	Logger.SetLevel(logrus.DebugLevel)
 }

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/jake-willog/go-k8s-api.git/src/api/argocd"
 	"github.com/jake-willog/go-k8s-api.git/src/api/model"
 	"github.com/jake-willog/go-k8s-api.git/src/config"
 	"github.com/jake-willog/go-k8s-api.git/src/logger"
@@ -95,7 +96,7 @@ func GetArgoApplication(w http.ResponseWriter, r *http.Request) {
 
 func CreateArgoApplication(w http.ResponseWriter, r *http.Request) {
 	reqId := getRequestId(w, r)
-	logger.Debugf(reqId, "v1/argocd/application/create GET started")
+	logger.Debugf(reqId, "v1/argocd/application/create POST started")
 
 	client, err := config.LoadArgoConfig()
 	if err != nil {
@@ -123,6 +124,25 @@ func CreateArgoApplication(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	err = syncArgoApplication(client, reqId, argoApplicationCreateReq.Name)
+	if err != nil {
+		logger.Errorf(reqId, "Failed to sync ArgoCD: %s", err)
+		resp := newResponse(w, reqId, 500, "Internal Server Error")
+		writeResponse(reqId, w, resp)
+		return
+	}
+
 	resp := newOkResponse(w, reqId, "Ok")
 	writeResponse(reqId, w, resp)
+}
+
+func syncArgoApplication(client *argocd.Client, reqId string, name string) error {
+	logger.Debugf(reqId, "syncArgoApplication")
+
+	_, err := client.SyncApplication(name)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

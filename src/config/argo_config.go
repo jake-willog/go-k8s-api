@@ -13,8 +13,6 @@ func LoadArgoConfig() (*argocd.Client, error) {
 
 	client, err := argocd.NewClient(argoconfig)
 	if err != nil {
-		// panic(err)
-		// logger.Errorf("Failed to get connection from ArgoCD: %s", err)
 		return nil, err
 	}
 
